@@ -34,6 +34,7 @@ before_script:
 
 stages:
   - build
+  - deploy
 
 docker_build:
   stage: build
@@ -46,7 +47,18 @@ docker_build:
     - docker build -f Docker/model_service/Dockerfile -t $REGISTRY/dev/app:$CI_COMMIT_SHA .
     - docker push "$REGISTRY/dev/app:$CI_COMMIT_SHA"
 
-
+docker_deploy:
+  stage: deploy
+  tags:
+    - prod
+  only:
+    - main
+  script:
+    - $env:CONTAINER_PREFIX = "dev"
+    - docker rm $(docker stop $(docker ps -a -q --filter name=dev*)); if (-not $?) {cd .}  # docker stop $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
+#    - docker rm $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
+    - docker volume rm $(docker volume ls -q --filter name=dev*); if (-not $?) {cd .}  # docker volume rm $(docker volume ls | grep ${CONTAINER_PREFIX}_ | awk '{print $2}') || true
+    - docker-compose -p $env:CONTAINER_PREFIX -f docker-compose.dev.yaml up -d
 
 
 #

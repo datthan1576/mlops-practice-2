@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+
+  app:
+    image: $REGISTRY/dev/app:$CI_COMMIT_SHA
+    container_name: dev_model_service
+    ports:
+      - "8004:81"
+    environment:
+      - MLFLOW_TRACKING_URI=http://192.168.1.150:5000
+      - MLFLOW_S3_ENDPOINT_URL=http://192.168.1.150:9000

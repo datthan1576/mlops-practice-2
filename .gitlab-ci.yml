@@ -35,6 +35,8 @@ dev_tests:
   stage: test
   tags:
     - mlops
+  only:
+    - main
   script:
     - python --version
 
@@ -42,7 +44,9 @@ dev_tests:
 dev_build:
   stage: build
   tags:
-    - dev
+    - prod
+  only:
+    - main1
   script:
     - python --version
 

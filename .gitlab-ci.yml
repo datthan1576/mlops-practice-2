@@ -33,14 +33,14 @@ stages:
 
 dev_tests:
   stage: test
-  scripts:
+  script:
     - python --version
 
 
 
 dev_build:
   stage: build
-  scripts:
+  script:
     - python --version
 
 

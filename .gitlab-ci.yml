@@ -27,17 +27,33 @@ cache:
     - .venv/
     - .cache/pip
 
-before_script:
-  - python --version
-  - pip install poetry
-  - poetry config virtualenvs.in-project true
-  - poetry install --no-root
+stages:
+  - test
+  - build
 
-pytest:
-  script:
-    - poetry run dvc pull
-    - poetry run dvc repro
-    - poetry run pytest --disable-warnings
+dev_tests:
+  stage: test
+  scripts:
+    - python --version
+
+
+
+dev_build:
+  stage: build
+  scripts:
+    - python --version
+
+#before_script:
+#  - python --version
+#  - pip install poetry
+#  - poetry config virtualenvs.in-project true
+#  - poetry install --no-root
+#
+#pytest:
+#  script:
+#    - poetry run dvc pull
+#    - poetry run dvc repro
+#    - poetry run pytest --disable-warnings
 
 
 #type_test:

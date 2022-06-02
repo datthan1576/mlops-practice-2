@@ -11,6 +11,7 @@ image: python:3.9
 # only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  REGISTRY: "registry.gitlab.com/m1f/mlops_tests"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
@@ -27,36 +28,27 @@ cache:
     - .venv/
     - .cache/pip
 
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+
 stages:
-  - test
   - build
 
-dev_tests:
-  stage: test
+docker_build:
+  stage: build
   tags:
     - mlops
   only:
     - main
   script:
-    - python --version
-
-
-dev_build:
-  stage: build
-  tags:
-    - prod
-  only:
-    - main1
-  script:
-    - python --version
+    - echo $CI_COMMIT_SHA
+    - docker build -f Docker/model_service/Dockerfile -t $REGISTRY/dev/app:$CI_COMMIT_SHA .
+    - docker push "$REGISTRY/dev/app:$CI_COMMIT_SHA"
 
 
 
-#before_script:
-#  - python --version
-#  - pip install poetry
-#  - poetry config virtualenvs.in-project true
-#  - poetry install --no-root
+
 #
 #pytest:
 #  script:

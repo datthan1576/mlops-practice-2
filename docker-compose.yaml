@@ -70,7 +70,7 @@ services:
       
   mlflow:
     restart: always
-    image: mlflow_server
+    image: 127.0.0.1:8123/mlflow_server:latest
     container_name: mlflow_server
     ports:
       - "5000:5000"
@@ -94,6 +94,15 @@ services:
       - MLFLOW_TRACKING_URI=http://mlflow:5000
       - MLFLOW_S3_ENDPOINT_URL=http://nginx:9000
 
+  nexus:
+    image: sonatype/nexus3:latest
+    container_name: nexus
+    ports:
+      - "8081:8081"
+      - "8123:8123"
+    volumes:
+      - nexus:/nexus-data
+
 #  gitlab-runner:
 #    image: gitlab/gitlab-runner:latest
 #    container_name: gitlab-runner
@@ -113,3 +122,4 @@ networks:
     
 volumes:
   postgres:
+  nexus:

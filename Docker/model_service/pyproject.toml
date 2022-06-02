@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "mlops-course"
+version = "0.1.0"
+description = ""
+authors = ["Pavel Kikin <it-technologies@yandex.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^1.4.2"
+scikit-learn = "^1.0.2"
+lightgbm = "^3.3.2"
+click = "^8.1.2"
+dvc = {extras = ["s3"], version = "^2.10.2"}
+mlflow = "^1.25.1"
+matplotlib = "^3.5.2"
+psycopg2 = "^2.9.3"
+python-dotenv = "^0.20.0"
+fastapi = {extras = ["all"], version = "^0.78.0"}
+python-multipart = "^0.0.5"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.950"
+flake8 = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+

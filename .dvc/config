@@ -1,0 +1,10 @@
+[core]
+    remote = remote
+    autostage = false
+['remote "remote"']
+    url = s3://dvc
+    endpointurl = http://localhost:9000
+    access_key_id = minioadmin
+    secret_access_key = minioadmin
+    use_ssl = False
+

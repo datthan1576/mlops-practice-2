@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "0dc50ae5-82e1-4d95-a011-504dcfd7f6c4",
+		"name": "MLflow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MLflow request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "-H",
+						"value": "'Content-Type: application/json'",
+						"type": "text"
+					},
+					{
+						"key": "-d",
+						"value": "{\"columns\": [\"geo_lat\", \"geo_lon\", \"building_type\", \"level\", \"levels\", \"area\", \"kitchen_area\", \"object_type\", \"year\", \"month\", \"level_to_levels\", \"area_to_rooms\", \"cafes_0.012\", \"cafes_0.08\"],\"data\": [[59.8058084, 59.827465, 59.9992721], [30.376141, 30.201827, 29.7702254], [1, 1, 3], [8, 7, 3], [10, 9, 4], [82.6, 31.0, 52.6], [10.8, 7.0, 8.8], [1, 1, 1], [2018, 2018, 2018], [2, 4, 6], [0.8, 0.777, 0.75], [27.5, 31, 26], [2, 5, 0], [174, 121, 0]]}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"columns\": [\"geo_lat\", \"geo_lon\", \"building_type\", \"level\", \"levels\", \"area\", \"kitchen_area\", \"object_type\", \"year\", \"month\", \"level_to_levels\", \"area_to_rooms\", \"cafes_0.012\", \"cafes_0.08\"],\r\n    \"data\": [[59.8058084,30.376141,1,8,10,82.6,10.8,1,2018,2,0.8,27.53333333333333,2,174], [59.827465,30.201827,1,7,9,31.0,7.0,1,2018,4,0.7777777777777778,31.0,5,121], [59.9992721,29.7702254,3,3,4,52.6,8.8,1,2018,6,0.75,26.3,0,0]]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8001/invocations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"invocations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FastAPI",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/Users/OneDrive/MLOps course/Block 7/mlops-course/data/processed/test_x.csv"
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8003/invocations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8003",
+					"path": [
+						"invocations"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

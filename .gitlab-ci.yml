@@ -11,7 +11,7 @@ image: python:3.9
 # only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
-  REGISTRY: "registry.gitlab.com/m1f/mlops_tests"
+  REGISTRY: "registry.gitlab.com/m1f/mlops_cd"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
